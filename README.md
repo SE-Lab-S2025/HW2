@@ -30,3 +30,89 @@
 | 5    | SmsMessageService          | اورراید تابع ارسال پیام تلگرامی         | افزودن یک تابع `void` با بدنه‌ی خالی و عنوان `sendTelegramMessage`|
 | 6    | Main                       | اضافه کردن گزینه سوم برای انتخاب کاربر   | اضافه کردن حالت سوم به سوئیچ کیس و پیاده‌سازی ارسال پیام تلگرامی.       |
 
+### مرحله سوم
+ جدول بررسی موارد تحقق و نقض اصول SOLID به جز اصل اول صرفا با توجه به کلاس‌های  بسته‌ی Services و کلاس Main:
+<table dir='rtl'>
+<tbody>
+<tr>
+<td rowspan="2">
+<p>اصل 2</p>
+<p>Open-Close Principle (OCP)</p>
+</td>
+<td>
+<p><strong>موارد تحقق</strong></p>
+</td>
+<td>
+<p>کلاس‌های <code>EmailMessageService</code> و <code>SmsMessageService</code> از واسط <code>MessageService</code> ارث‌بری می‌کنند و می‌توانند بدون تغییر سایر بخش‌ها تغییر کنند.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><strong>موارد نقض</strong></p>
+</td>
+<td>
+<p>هر بار که بخواهیم روش جدیدی برای ارسال پیام اضافه کنیم، باید واسط <code>MessageService</code> و کلاس‌‌هایی که از آن ارث‌بری می‌کنند را تغییر دهیم. </p>
+</td>
+</tr>
+<tr>
+<td rowspan="2">
+<p>اصل 3</p>
+<p>Liskov Substitution Principle</p>
+</td>
+<td>
+<p><strong>موارد تحقق</strong></p>
+</td>
+<td>
+<p>همه کلاس‌هایی که از <code>MessageService</code> ارث‌بری کرده‌اند می‌توانند جایگزین یکدیگر شوند بدون این که عملکرد اصلی تغییر کند.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><strong>موارد نقض</strong></p>
+</td>
+<td>
+<p>در هر کلاس فرزند، برخی از متدها بلا استفاده مانده‌اند و بدنه‌ای خالی دارند، که می‌تواند منجر به رفتارهای غیرمنتظره شود.</p>
+</td>
+</tr>
+<tr>
+<td rowspan="2">
+<p>اصل 4</p>
+<p>Interface Segregation Principle</p>
+</td>
+<td>
+<p><strong>موارد تحقق</strong></p>
+</td>
+<td>
+<p>هیچ موردی تحقق نیافته است.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><strong>موارد نقض</strong></p>
+</td>
+<td>
+<p>واسط  <code>MessageService</code> شامل متدهایی است که در هر پیاده‌سازی نیازی به همه آنها نیست و بدنه‌ای خالی دارند، این امر باعث نقض این اصل می‌شود.</p>
+</td>
+</tr>
+<tr>
+<td rowspan="2">
+<p>اصل 5</p>
+<p>Dependency Inversion Principle</p>
+</td>
+<td>
+<p><strong>موارد تحقق</strong></p>
+</td>
+<td>
+<p>کلاس <code>Main</code> به جای وابستگی به کلاس‌های خاص، به واسط <code>MessageService</code> وابسته است که این اصل را تحقق می‌بخشد.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><strong>موارد نقض</strong></p>
+</td>
+<td>
+<p>هیچ موردی نقض نشده است.</p>
+</td>
+</tr>
+</tbody>
+</table>
