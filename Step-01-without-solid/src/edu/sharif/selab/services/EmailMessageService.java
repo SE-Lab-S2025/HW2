@@ -2,6 +2,7 @@ package edu.sharif.selab.services;
 
 import edu.sharif.selab.models.EmailMessage;
 import edu.sharif.selab.models.SmsMessage;
+import edu.sharif.selab.models.TelegramMessage;
 
 import java.util.regex.Pattern;
 
@@ -29,5 +30,10 @@ public class EmailMessageService implements MessageService{
 
         // Check if the email string matches the regex pattern
         return pattern.matcher(email).matches();
+    }
+
+    @Override
+    public void sendTelegramMessage(TelegramMessage telegramMessage){
+        //Empty Body
     }
 }
